@@ -9,9 +9,6 @@ function RestaurantMenu({ restaurant, navigate, addToCart, cart }) {
   if (!restaurant) { navigate('home'); return null; }
 
   const categories = [...new Set(restaurant.menu.map(item => item.category))];
-  const activeItems = activeCategory
-    ? restaurant.menu.filter(i => i.category === activeCategory)
-    : restaurant.menu;
 
   const getQty = (id) => quantities[id] || 1;
 

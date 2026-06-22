@@ -14,14 +14,14 @@ const categories = [
   { name: 'Grill', icon: '🔥' },
 ];
 
-const searchFoods = [
-  { name: 'Pizza', image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=800&q=80' },
-  { name: 'Burger', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80' },
-  { name: 'Noodles', image: 'https://images.unsplash.com/photo-1512058564366-c9e8aa0e7f35?auto=format&fit=crop&w=800&q=80' },
-  { name: 'Sub-sandwich', image: 'https://images.unsplash.com/photo-1550332788-6c0c7e012e3e?auto=format&fit=crop&w=800&q=80' },
-  { name: 'Chowmein', image: 'https://images.unsplash.com/photo-1541647376584-3d67ed7d5e74?auto=format&fit=crop&w=800&q=80' },
-  { name: 'Steak', image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80' },
-];
+// const searchFoods = [
+//   { name: 'Pizza', image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=800&q=80' },
+//   { name: 'Burger', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80' },
+//   { name: 'Noodles', image: 'https://images.unsplash.com/photo-1512058564366-c9e8aa0e7f35?auto=format&fit=crop&w=800&q=80' },
+//   { name: 'Sub-sandwich', image: 'https://images.unsplash.com/photo-1550332788-6c0c7e012e3e?auto=format&fit=crop&w=800&q=80' },
+//   { name: 'Chowmein', image: 'https://images.unsplash.com/photo-1541647376584-3d67ed7d5e74?auto=format&fit=crop&w=800&q=80' },
+//   { name: 'Steak', image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80' },
+// ];
 
 function Home({ navigate, toggleFavourite, isFavourite }) {
   const categoriesRef = useRef(null);
@@ -391,7 +391,7 @@ function Home({ navigate, toggleFavourite, isFavourite }) {
                 <li>Quick reorder for saved favorites</li>
               </ul>
 
-              <a href="#" className="google-play-btn">
+              <a href="https://play.google.com"target="_blank"rel="noopener noreferrer"className="google-play-btn">
                 <span className="gp-icon">▶</span>
                 <span>
                   <small>GET IT ON</small>
