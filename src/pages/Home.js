@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { restaurants } from '../data/restaurants';
 import mobbVideo from '../background.mp4';
 import './Home.css';
@@ -14,17 +14,14 @@ const categories = [
   { name: 'Grill', icon: '🔥' },
 ];
 
-// const searchFoods = [
-//   { name: 'Pizza', image: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=800&q=80' },
-//   { name: 'Burger', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80' },
-//   { name: 'Noodles', image: 'https://images.unsplash.com/photo-1512058564366-c9e8aa0e7f35?auto=format&fit=crop&w=800&q=80' },
-//   { name: 'Sub-sandwich', image: 'https://images.unsplash.com/photo-1550332788-6c0c7e012e3e?auto=format&fit=crop&w=800&q=80' },
-//   { name: 'Chowmein', image: 'https://images.unsplash.com/photo-1541647376584-3d67ed7d5e74?auto=format&fit=crop&w=800&q=80' },
-//   { name: 'Steak', image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80' },
-// ];
-
 function Home({ navigate, toggleFavourite, isFavourite }) {
+  const [searchTerm, setSearchTerm] = useState('');
   const categoriesRef = useRef(null);
+
+  const searchQuery = searchTerm.trim().toLowerCase();
+  const filteredRestaurants = searchQuery
+    ? restaurants.filter((restaurant) => restaurant.name.toLowerCase().includes(searchQuery))
+    : [];
 
   const scrollCategories = (direction) => {
     if (categoriesRef.current) {
@@ -51,7 +48,32 @@ function Home({ navigate, toggleFavourite, isFavourite }) {
               Order from your favourite restaurants and get fresh food delivered to your door in minutes.
             </p>
             <div className="hero-search">
-              <input type="text" placeholder="Search restaurants, cuisines..." className="search-input" />
+              <input
+                type="text"
+                placeholder="Search restaurants, cuisines..."
+                className="search-input"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {searchTerm.trim() !== '' && (
+                <div className="search-results">
+                  {filteredRestaurants.length > 0 ? (
+                    filteredRestaurants.map((restaurant) => (
+                      <button
+                        key={restaurant.id}
+                        type="button"
+                        className="search-result-item"
+                        onClick={() => navigate('menu', restaurant)}
+                      >
+                        <div className="search-result-primary">{restaurant.name}</div>
+                        <div className="search-result-subtext">{restaurant.cuisine}</div>
+                      </button>
+                    ))
+                  ) : (
+                    <div className="search-no-results">No restaurants found</div>
+                  )}
+                </div>
+              )}
             </div>
             <div className="hero-tags">
               <span> Lightning Fast</span>
@@ -67,13 +89,6 @@ function Home({ navigate, toggleFavourite, isFavourite }) {
             </div>
             <br></br>
           </div>
-          {/* <div className="hero-right">
-            <img
-             // src="https://thumbs.dreamstime.com/b/people-eating-healthy-meals-wooden-table-top-view-food-delivery-people-eating-healthy-meals-wooden-table-food-delivery-160387494.jpg"
-             // alt="Delicious food"
-              className="hero-img"
-            />
-          </div> */}
         </div>
       </section>
 
@@ -129,10 +144,9 @@ function Home({ navigate, toggleFavourite, isFavourite }) {
             </div>
           ))}
         </div>
-      </section> */
+      </section>
 
       {/* Search by Food Section */}
-{/* Search by Food */}
 <section className="food-search-section container">
 
   <div className="section-header">
@@ -321,40 +335,6 @@ function Home({ navigate, toggleFavourite, isFavourite }) {
         </div>
       </section>
 
-      {/* Restaurants
-      <section id="restaurants" className="restaurants-section container">
-        <div className="section-header">
-          <h2 className="section-title">Restaurants Near me</h2>
-          <button className="see-all">See All →</button>
-        </div>
-        <div className="restaurants-grid">
-          {restaurants.map(r => (
-            <div key={r.id} className="restaurant-card">
-              <div className="restaurant-img-wrap">
-                <img src={r.image} alt={r.name} className="restaurant-img" />
-                <button
-                  className={`fav-btn ${isFavourite(r.id) ? 'active' : ''}`}
-                  onClick={(e) => { e.stopPropagation(); toggleFavourite(r); }}
-                >
-                  {isFavourite(r.id) ? '❤️' : '🤍'}
-                </button>
-                <span className="rating-badge"> {r.rating}</span>
-              </div>
-              <div className="restaurant-info">
-                <h3 className="restaurant-name">{r.name}</h3>
-                <p className="restaurant-cuisine">{r.cuisine}</p>
-                <div className="restaurant-meta">
-                  <span> {r.time} mins</span>
-                  <span>₹{r.priceForTwo} for two</span>
-                </div>
-                <button className="btn-primary order-btn" onClick={() => navigate('menu', r)}>
-                  Order Now
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section> */}
 
       <section className="how-it-works-section container">
         <h2 className="section-title">How It Works</h2>
