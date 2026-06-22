@@ -18,7 +18,7 @@ function Profile({ user, setUser, isLoggedIn, handleLogin, handleSignup, handleL
   // If not logged in, show login/signup form
   if (!isLoggedIn) {
     return (
-      <div className="profile-page container">
+      <div className="profile-page">
         <div className="auth-container">
           <div className="auth-card">
             <div className="auth-icon">🍛</div>
@@ -112,9 +112,10 @@ function Profile({ user, setUser, isLoggedIn, handleLogin, handleSignup, handleL
   };
 
   return (
-    <div className="profile-page container">
-      <h1 className="page-title">My Profile</h1>
-      <div className="profile-layout">
+    <div className="profile-page">
+      <div className="container">
+        <h1 className="page-title">My Profile</h1>
+        <div className="profile-layout">
         {/* Profile Card */}
         <div className="profile-card">
           <div className="profile-avatar">{initials}</div>
@@ -251,6 +252,7 @@ function Profile({ user, setUser, isLoggedIn, handleLogin, handleSignup, handleL
             <button className="action-btn logout" onClick={() => handleLogout()}>🚪 Log Out</button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -6,17 +6,19 @@ const statusSteps = ['Order Placed', 'Preparing', 'On the Way', 'Delivered'];
 function Orders({ orders, navigate, removeOrder }) {
   if (orders.length === 0) {
     return (
-      <div className="empty-page">
-        <div className="empty-icon">📦</div>
-        <h2>No orders yet</h2>
-        <p>Order something delicious and it will show up here</p>
-        <button className="btn-primary" onClick={() => navigate('home')}>Order Now</button>
+      <div className="orders-page">
+        <div className="empty-page">
+          <div className="empty-icon">📦</div>
+          <h2>No orders yet</h2>
+          <p>Order something delicious and it will show up here</p>
+          <button className="btn-primary" onClick={() => navigate('home')}>Order Now</button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="orders-page container">
+    <div className="orders-page">
       <h1 className="page-title">Your Orders</h1>
       <div className="orders-list">
         {orders.map(order => {

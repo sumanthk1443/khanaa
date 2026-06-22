@@ -4,7 +4,7 @@ import { restaurants } from '../data/restaurants';
 
 const cities = ['Hyderabad', 'Bangalore', 'Chennai', 'Mumbai', 'Delhi'];
 
-function Navbar({ currentPage, navigate, cartCount, selectedCity, setSelectedCity, isLoggedIn, userProfile, handleLogout }) {
+function Navbar({ currentPage, navigate, cartCount, selectedCity, setSelectedCity, isLoggedIn, userProfile, handleLogout, theme, toggleTheme }) {
   const [showCities, setShowCities] = useState(false);
   const [searchVal, setSearchVal] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -100,6 +100,9 @@ function Navbar({ currentPage, navigate, cartCount, selectedCity, setSelectedCit
           <button className="cart-btn" onClick={() => navigate('cart')}>
             🛒
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+          </button>
+          <button className="theme-toggle-btn" onClick={toggleTheme}>
+            {theme === 'dark' ? '☀️' : '🌙'}
           </button>
           {isLoggedIn ? (
             <div className="profile-dropdown-wrapper">

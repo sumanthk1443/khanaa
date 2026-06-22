@@ -4,9 +4,16 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
   box-shadow: var(--shadow);
   height: 72px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme='dark'] .navbar {
+  background: rgba(20, 20, 20, 0.92);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
 .navbar-inner {
@@ -45,7 +52,7 @@
   position: relative;
   padding: 6px 12px;
   border-radius: 50px;
-  background: #FFF3EB;
+  background: var(--surface);
   flex-shrink: 0;
   user-select: none;
 }
@@ -61,9 +68,9 @@
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow);
   min-width: 160px;
   overflow: hidden;
   z-index: 999;
@@ -75,7 +82,7 @@
   cursor: pointer;
   transition: background 0.15s;
 }
-.city-option:hover { background: #FFF3EB; }
+.city-option:hover { background: rgba(255,255,255,0.24); }
 .city-option.active {
   background: var(--primary);
   color: white;
@@ -86,14 +93,17 @@
 .nav-search {
   flex: 1;
   max-width: 380px;
-  display: flex;
+  display: none;
   align-items: center;
   gap: 10px;
-  background: #F5F0F2;
+  background: var(--surface);
   border-radius: 50px;
   padding: 0 18px;
   height: 42px;
   position: relative;
+}
+[data-theme='dark'] .nav-search {
+  background: var(--surface);
 }
 .search-icon { font-size: 16px; opacity: 0.5; }
 .nav-search input {
@@ -105,13 +115,13 @@
   width: 100%;
   color: var(--text-dark);
 }
-.nav-search input::placeholder { color: #A3969E; }
+.nav-search input::placeholder { color: var(--text-muted); }
 .search-suggestions {
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
   right: 0;
-  background: white;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow: 0 16px 40px rgba(127, 42, 71, 0.12);
@@ -130,7 +140,7 @@
   gap: 4px;
 }
 .suggestion-item:hover {
-  background: #F8EEF2;
+  background: rgba(255,255,255,0.16);
 }
 .suggestion-item strong {
   font-size: 14px;
@@ -160,18 +170,22 @@
   border-radius: 50px;
   transition: all 0.2s;
 }
-.nav-link:hover { background: #FFF3EB; color: var(--primary); }
+.nav-link:hover { background: rgba(255,255,255,0.24); color: var(--primary); }
 .nav-link.active { color: var(--primary); font-weight: 700; }
 
+[data-theme='dark'] .nav-link:hover { background: rgba(255, 255, 255, 0.16); color: var(--text-dark); }
+[data-theme='dark'] .nav-link.active { color: #ffffff; }
+
 /* Actions */
-.nav-actions {
+.nav-actions{
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
 }
+
 .cart-btn {
-  background: #FFF3EB;
+  background: var(--surface);
   border: none;
   width: 42px;
   height: 42px;
@@ -181,7 +195,7 @@
   position: relative;
   transition: background 0.2s;
 }
-.cart-btn:hover { background: #FFE0CC; }
+.cart-btn:hover { background: var(--surface-soft); }
 .cart-badge {
   position: absolute;
   top: -4px;
@@ -221,7 +235,7 @@
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: white;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
@@ -242,18 +256,32 @@
   cursor: pointer;
   transition: background 0.15s;
 }
-.dropdown-item:hover { background: #FFF3EB; }
+.dropdown-item:hover { background: rgba(255,255,255,0.2); }
 .dropdown-item.logout-btn {
   color: #D32F2F;
   border-top: 1px solid var(--border);
 }
-.dropdown-item.logout-btn:hover { background: #FFEBEE; }
+.dropdown-item.logout-btn:hover { background: rgba(255,255,255,0.22); }
 
 /* Auth Buttons */
 .auth-buttons {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--text-dark);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.theme-toggle-btn:hover {
+  background: rgba(127, 42, 71, 0.16);
 }
 .login-btn {
   background: transparent;

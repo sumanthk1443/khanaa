@@ -9,17 +9,19 @@ function Cart({ cart, updateCartItem, placeOrder, navigate }) {
 
   if (cart.length === 0) {
     return (
-      <div className="empty-page">
-        <div className="empty-icon">🛒</div>
-        <h2>Your bag is empty</h2>
-        <p>Add items from a restaurant to get started</p>
-        <button className="btn-primary" onClick={() => navigate('home')}>Browse Restaurants</button>
+      <div className="cart-page">
+        <div className="empty-page">
+          <div className="empty-icon">🛒</div>
+          <h2>Your bag is empty</h2>
+          <p>Add items from a restaurant to get started</p>
+          <button className="btn-primary" onClick={() => navigate('home')}>Browse Restaurants</button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="cart-page container">
+    <div className="cart-page">
       <h1 className="page-title">Your Bag</h1>
       <div className="cart-layout">
         {/* Items */}

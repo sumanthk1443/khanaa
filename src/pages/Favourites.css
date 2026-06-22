@@ -1,18 +1,36 @@
-.favs-page { padding: 40px 24px 60px; }
-.fav-count { color: var(--text-light); font-size: 14px; margin-bottom: 24px; margin-top: -16px; }
+.favs-page {
+  padding: 40px 0 60px;
+  background-image: url('../white.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% auto;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  transition: background-image 0.4s ease, background-color 0.4s ease;
+}
+
+[data-theme='dark'] .favs-page {
+  background-image: url('../black.png');
+}
+.page-title { font-size: 28px; font-weight: 800; margin-bottom: 28px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 24px; }
+.fav-count { color: var(--text-light); font-size: 14px; margin-bottom: 24px; margin-top: -16px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 24px; }
 .favs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 .fav-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  box-shadow: var(--shadow);
   transition: all 0.25s;
 }
-.fav-card:hover { transform: translateY(-5px); box-shadow: 0 10px 32px rgba(255,107,0,0.15); }
+.fav-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 
 .fav-img-wrap { position: relative; height: 180px; overflow: hidden; }
 .fav-img { width: 100%; height: 100%; object-fit: cover; }
@@ -20,14 +38,14 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: white;
+  background: var(--surface);
   border: none;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.24);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +54,7 @@
   position: absolute;
   bottom: 12px;
   left: 12px;
-  background: white;
+  background: var(--surface-soft);
   padding: 4px 10px;
   border-radius: 50px;
   font-size: 12px;

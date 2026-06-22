@@ -10,12 +10,34 @@
   --text-mid: #6A5A68;
   --text-light: #A999A6;
   --card-bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-soft: #F5F5F5;
   --border: #E8D2D8;
   --success: #22C55E;
   --shadow: 0 4px 20px rgba(127, 42, 71, 0.12);
   --shadow-hover: 0 8px 32px rgba(127, 42, 71, 0.18);
   --radius: 16px;
   --radius-sm: 10px;
+}
+
+[data-theme='dark'] {
+  --primary: #FBF4E8;
+  --primary-light: #FFFFFF;
+  --primary-dark: #F8E5D6;
+  --bg: #090909;
+  --white: #131313;
+  --text-dark: #F5F5F5;
+  --text-mid: #D6D6D6;
+  --text-light: #A7A7A7;
+  --card-bg: #101010;
+  --surface: #121212;
+  --surface-soft: #1D1D1D;
+  --surface-strong: #1A1A1A;
+  --text-muted: #9A9A9A;
+  --border: #2D2D2D;
+  --success: #22C55E;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.32);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.45);
 }
 
 * {
@@ -28,14 +50,70 @@ body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--bg);
   color: var(--text-dark);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input,
+textarea,
+select {
+  background: var(--surface);
+  color: var(--text-dark);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+button:disabled,
+button[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+}
+
+button,
+.btn-primary,
+.btn-outline,
+.action-btn,
+.add-btn,
+.reorder-btn,
+.promo-btn,
+.place-order-btn,
+.cart-bar-btn,
+.profile-btn {
+  transition: all 0.2s ease;
 }
 
 .app {
   min-height: 100vh;
+  background: var(--bg);
 }
 
 .page-content {
   padding-top: 72px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('./white.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  opacity: 1;
+  transition: opacity 0.4s ease, background-image 0.4s ease;
+  z-index: -1;
+}
+
+[data-theme='dark'] body::before {
+  background-image: url('./black.png');
 }
 
 /* BUTTONS */

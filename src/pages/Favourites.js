@@ -4,17 +4,19 @@ import './Favourites.css';
 function Favourites({ favourites, navigate, toggleFavourite }) {
   if (favourites.length === 0) {
     return (
-      <div className="empty-page">
-        <div className="empty-icon">❤️</div>
-        <h2>No favourites yet</h2>
-        <p>Tap the heart icon on a restaurant to save it here</p>
-        <button className="btn-primary" onClick={() => navigate('home')}>Explore Restaurants</button>
+      <div className="favs-page">
+        <div className="empty-page">
+          <div className="empty-icon">❤️</div>
+          <h2>No favourites yet</h2>
+          <p>Tap the heart icon on a restaurant to save it here</p>
+          <button className="btn-primary" onClick={() => navigate('home')}>Explore Restaurants</button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="favs-page container">
+    <div className="favs-page">
       <h1 className="page-title">Your Favourites</h1>
       <p className="fav-count">{favourites.length} saved restaurant{favourites.length > 1 ? 's' : ''}</p>
       <div className="favs-grid">

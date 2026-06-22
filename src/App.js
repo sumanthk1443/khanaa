@@ -17,6 +17,11 @@ function App() {
   const [orders, setOrders] = useState(() => JSON.parse(localStorage.getItem('orders')) || []);
   const [favourites, setFavourites] = useState(() => JSON.parse(localStorage.getItem('favourites')) || []);
   const [selectedCity, setSelectedCity] = useState('Hyderabad');
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
   const [message, setMessage] = useState({ text: '', type: '' });
   const [credentials, setCredentials] = useState(() => JSON.parse(localStorage.getItem('credentials')) || null);
   const [userProfile, setUserProfile] = useState(() => JSON.parse(localStorage.getItem('userProfile')) || {
@@ -49,6 +54,12 @@ function App() {
   useEffect(() => {
     localStorage.setItem('isLoggedIn', isLoggedIn.toString());
   }, [isLoggedIn]);
+
+  // Save theme to localStorage
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   // Save credentials to localStorage
   useEffect(() => {
@@ -101,6 +112,10 @@ function App() {
   const navigate = (page, data = null) => {
     setCurrentPage(page);
     if (data) setSelectedRestaurant(data);
+  };
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   const addToCart = (item, restaurant) => {
@@ -187,6 +202,8 @@ function App() {
         isLoggedIn={isLoggedIn}
         userProfile={userProfile}
         handleLogout={handleLogout}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
       <div className="page-content">
         {renderPage()}
